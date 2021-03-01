@@ -25,9 +25,6 @@ function _createModalFooter(buttons = []) {
   return wrap
 }
 
-
-
-
 function _createModal(options) {
   const DEFAULT_WIDTH = '600px'
   const modal = document.createElement('div')
@@ -71,6 +68,9 @@ $.modal = function(options) {
       setTimeout(() => {
         $modal.classList.remove('hide')
         closing = false
+        if (typeof options.onClose === 'function') {
+          options.onClose()
+        }
       }, ANIMATION_SPEED)
     }
   }
